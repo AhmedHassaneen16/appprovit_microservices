@@ -1,0 +1,15 @@
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    restart: always
+    volumes:
+      - "./default.conf:/etc/nginx/conf.d/default.conf"
+    ports:
+      - 80:80
+    networks:
+      - emart
+networks:
+  emart:
+    external: true

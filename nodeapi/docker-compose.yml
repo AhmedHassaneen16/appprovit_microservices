@@ -1,0 +1,28 @@
+services:
+
+  emartapi:
+    container_name: api
+    image: emartapi
+    ports:
+      - 5000:5000
+    networks:
+      - emart
+    restart: always
+    depends_on:
+      - emongo
+
+  emongo:
+    container_name: emongo
+    image: mongo:4
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=epoc
+    volumes:
+      - ./mongo-data:/data/db
+    networks:
+      - emart
+
+networks:
+  emart:
+    external: true

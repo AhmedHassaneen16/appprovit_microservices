@@ -1,0 +1,12 @@
+services:
+  api-getway:
+    container_name: client
+    build: 
+      context: ./
+    ports:
+      - 4200:4200
+    networks:
+      - emart
+networks:
+  emart:
+    external: true

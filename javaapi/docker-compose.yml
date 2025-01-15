@@ -1,0 +1,28 @@
+services:
+  booksapi:
+    container_name: webapi
+    image: booksapi
+    ports:
+      - 9000:9000
+    restart: always
+    networks:
+      - emart
+    depends_on:
+      - mysql
+
+  mysql:
+    container_name: emartdb
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=emartdbpass
+      - MYSQL_DATABASE=books
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-data:/data/db
+    networks:
+      - emart
+
+networks:
+  emart:
+    external: true
